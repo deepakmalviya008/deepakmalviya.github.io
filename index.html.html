@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepak Malviya | Full Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        dark: { 900: '#0a0a0f', 800: '#12121a', 700: '#1a1a24' },
+                        accent: { primary: '#6366f1', secondary: '#8b5cf6', tertiary: '#06b6d4' }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-20px)' } },
+                        glow: { '0%': { boxShadow: '0 0 20px rgba(99, 102, 241, 0.3)' }, '100%': { boxShadow: '0 0 40px rgba(99, 102, 241, 0.6)' } },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text { background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .gradient-border { background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4); padding: 2px; border-radius: 12px; }
+        .gradient-border-inner { background: #12121a; border-radius: 10px; }
+        .tech-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15); }
+        .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; z-index: 0; }
+        @media (max-width: 768px) { .blob { filter: blur(60px); opacity: 0.2; } }
+        .code-window { background: linear-gradient(180deg, #1e1e2e 0%, #12121a 100%); }
+        .code-window::before { content: ''; position: absolute; top: 12px; left: 16px; width: 10px; height: 10px; background: #ff5f56; border-radius: 50%; box-shadow: 16px 0 0 #ffbd2e, 32px 0 0 #27ca40; }
+        @media (max-width: 640px) { .code-window::before { width: 8px; height: 8px; box-shadow: 14px 0 0 #ffbd2e, 28px 0 0 #27ca40; } }
+        .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease-in-out; }
+        .mobile-menu.active { transform: translateX(0); }
+        html, body { overflow-x: hidden; }
+    </style>
+</head>
+<body class="bg-dark-900 text-gray-100 font-sans overflow-x-hidden">
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+        <div class="blob w-64 sm:w-96 h-64 sm:h-96 bg-accent-primary -top-32 -left-32 sm:top-0 sm:-left-48 animate-float"></div>
+        <div class="blob w-48 sm:w-80 h-48 sm:h-80 bg-accent-secondary top-1/3 -right-24 sm:right-0 animate-float" style="animation-delay: -2s;"></div>
+        <div class="blob w-40 sm:w-64 h-40 sm:h-64 bg-accent-tertiary bottom-0 left-1/4 sm:left-1/3 animate-float" style="animation-delay: -4s;"></div>
+    </div>
+
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-dark-900/80 backdrop-blur-lg border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-lg sm:text-xl font-semibold gradient-text">&lt;DM /&gt;</a>
+            <div class="hidden md:flex gap-8">
+                <a href="#about" class="text-gray-400 hover:text-white transition-colors text-sm">About</a>
+                <a href="#skills" class="text-gray-400 hover:text-white transition-colors text-sm">Skills</a>
+                <a href="#contact" class="text-gray-400 hover:text-white transition-colors text-sm">Contact</a>
+            </div>
+            <button id="menuBtn" class="md:hidden p-2 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-64 h-full bg-dark-800 border-l border-white/10 md:hidden z-50">
+            <div class="p-6">
+                <button id="closeMenuBtn" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+                <div class="flex flex-col gap-6 mt-12">
+                    <a href="#about" class="mobile-link text-gray-300 hover:text-white transition-colors text-lg">About</a>
+                    <a href="#skills" class="mobile-link text-gray-300 hover:text-white transition-colors text-lg">Skills</a>
+                    <a href="#contact" class="mobile-link text-gray-300 hover:text-white transition-colors text-lg">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="menuOverlay" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
+
+    <section class="min-h-screen flex items-center justify-center relative px-4 sm:px-6 pt-20 pb-12">
+        <div class="max-w-6xl mx-auto w-full">
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                <div class="space-y-6 sm:space-y-8 z-10 text-center lg:text-left">
+                    <div class="space-y-2">
+                        <p class="text-accent-tertiary font-mono text-xs sm:text-sm tracking-wider">Hello, I'm</p>
+                        <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight">
+                            <span class="gradient-text">Deepak</span><br><span class="text-white">Malviya</span>
+                        </h1>
+                        <p class="text-lg sm:text-xl text-gray-400 mt-2">Full Stack Developer</p>
+                    </div>
+                    <p class="text-gray-400 text-base sm:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
+                        I craft seamless digital experiences from frontend to backend. Passionate about building scalable applications with modern technologies and clean code.
+                    </p>
+                    <div class="flex gap-3 sm:gap-4 flex-col sm:flex-row justify-center lg:justify-start">
+                        <a href="#contact" class="group px-6 sm:px-8 py-3 sm:py-4 bg-accent-primary rounded-xl font-medium hover:bg-accent-primary/90 transition-all animate-glow text-center">
+                            <span class="flex items-center justify-center gap-2">Let's Connect
+                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                            </span>
+                        </a>
+                        <a href="#skills" class="px-6 sm:px-8 py-3 sm:py-4 border border-white/10 rounded-xl font-medium hover:bg-white/5 transition-all text-center">View Skills</a>
+                    </div>
+                </div>
+                <div class="relative z-10 mt-8 lg:mt-0">
+                    <div class="code-window rounded-xl sm:rounded-2xl p-4 sm:p-6 pt-10 sm:pt-12 relative border border-white/10 shadow-2xl overflow-hidden">
+                        <pre class="font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto"><code><span class="text-pink-400">const</span> <span class="text-cyan-300">developer</span> = {
+  <span class="text-green-400">name</span>: <span class="text-amber-300">"Deepak Malviya"</span>,
+  <span class="text-green-400">role</span>: <span class="text-amber-300">"Full Stack Dev"</span>,
+  <span class="text-green-400">skills</span>: [
+    <span class="text-amber-300">"React"</span>, <span class="text-amber-300">"Angular"</span>,
+    <span class="text-amber-300">"Node.js"</span>, <span class="text-amber-300">"MongoDB"</span>
+  ],
+  <span class="text-purple-400">sayHello</span>() {
+    <span class="text-pink-400">return</span> <span class="text-amber-300">"Let's build!"</span>;
+  }
+};</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-10 sm:mb-16">
+                <p class="text-accent-tertiary font-mono text-xs sm:text-sm mb-3 sm:mb-4">What I Work With</p>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold gradient-text">Tech Stack</h2>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+                <div class="tech-card group p-4 sm:p-6 bg-dark-800/50 backdrop-blur border border-white/5 rounded-xl sm:rounded-2xl transition-all duration-300 hover:border-accent-primary/30">
+                    <div class="w-10 h-10 sm:w-14 sm:h-14 mb-3 sm:mb-4 flex items-center justify-center bg-dark-700 rounded-lg sm:rounded-xl group-hover:bg-accent-primary/10 transition-colors">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="2.139"/><path d="M12 6.07c5.523 0 10 2.067 10 4.618s-4.477 4.618-10 4.618S2 13.24 2 10.688s4.477-4.618 10-4.618z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8.464 8.464c3.905-3.905 8.27-5.57 9.75-3.718s-.53 5.845-4.436 9.75-8.27 5.57-9.75 3.718.53-5.845 4.436-9.75z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M15.536 8.464c-3.905-3.905-8.27-5.57-9.75-3.718s.53 5.845 4.436 9.75 8.27 5.57 9.75 3.718-.53-5.845-4.436-9.75z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-sm sm:text-base mb-0.5 sm:mb-1">ReactJS</h3>
+                    <p class="text-gray-500 text-xs sm:text-sm">Frontend Library</p>
+                </div>
+                <div class="tech-card group p-4 sm:p-6 bg-dark-800/50 backdrop-blur border border-white/5 rounded-xl sm:rounded-2xl transition-all duration-300 hover:border-accent-primary/30">
+                    <div class="w-10 h-10 sm:w-14 sm:h-14 mb-3 sm:mb-4 flex items-center justify-center bg-dark-700 rounded-lg sm:rounded-xl group-hover:bg-accent-primary/10 transition-colors">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-red-500" viewBox="0 0 24 24" fill="currentColor"><path d="M9.931 12.645h4.138l-2.07-4.908m0-7.737L.68 3.982l1.726 14.771L12 24l9.596-5.242L23.32 3.984 11.999.001zm7.064 18.31h-2.638l-1.422-3.503H8.996l-1.422 3.504h-2.64L12 2.65z"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-sm sm:text-base mb-0.5 sm:mb-1">AngularJS</h3>
+                    <p class="text-gray-500 text-xs sm:text-sm">Framework</p>
+                </div>
+                <div class="tech-card group p-4 sm:p-6 bg-dark-800/50 backdrop-blur border border-white/5 rounded-xl sm:rounded-2xl transition-all duration-300 hover:border-accent-primary/30">
+                    <div class="w-10 h-10 sm:w-14 sm:h-14 mb-3 sm:mb-4 flex items-center justify-center bg-dark-700 rounded-lg sm:rounded-xl group-hover:bg-accent-primary/10 transition-colors">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-green-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.985c-.275 0-.532-.074-.772-.202l-2.439-1.448c-.365-.203-.182-.277-.072-.314.496-.165.588-.201 1.101-.493.056-.037.129-.02.185.017l1.87 1.12c.074.036.166.036.221 0l7.319-4.237c.074-.036.11-.11.11-.202V7.768c0-.091-.036-.165-.11-.201l-7.319-4.219c-.073-.037-.165-.037-.221 0L4.552 7.566c-.073.036-.11.128-.11.201v8.457c0 .073.037.166.11.201l2 1.157c1.082.548 1.762-.095 1.762-.735V8.502c0-.11.091-.221.22-.221h.936c.108 0 .22.092.22.221v8.347c0 1.449-.788 2.294-2.164 2.294-.422 0-.752 0-1.688-.46l-1.925-1.099a1.55 1.55 0 01-.771-1.34V7.786c0-.55.293-1.064.771-1.339l7.316-4.237a1.637 1.637 0 011.544 0l7.317 4.237c.479.274.771.789.771 1.339v8.458c0 .549-.293 1.063-.771 1.34l-7.317 4.236c-.241.11-.516.165-.773.165zm2.256-5.816c-3.21 0-3.87-1.468-3.87-2.714 0-.11.092-.221.22-.221h.954c.11 0 .201.073.201.184.147.971.568 1.449 2.514 1.449 1.54 0 2.202-.35 2.202-1.175 0-.477-.185-.825-2.587-1.063-1.999-.2-3.246-.643-3.246-2.238 0-1.485 1.247-2.366 3.339-2.366 2.347 0 3.503.809 3.649 2.568a.297.297 0 01-.056.165c-.037.036-.091.073-.146.073h-.953a.212.212 0 01-.202-.164c-.221-1.012-.789-1.34-2.292-1.34-1.689 0-1.891.587-1.891 1.027 0 .531.239.696 2.514.99 2.256.293 3.32.715 3.32 2.294-.019 1.615-1.339 2.531-3.67 2.531z"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-sm sm:text-base mb-0.5 sm:mb-1">Node.js</h3>
+                    <p class="text-gray-500 text-xs sm:text-sm">Backend</p>
+                </div>
+                <div class="tech-card group p-4 sm:p-6 bg-dark-800/50 backdrop-blur border border-white/5 rounded-xl sm:rounded-2xl transition-all duration-300 hover:border-accent-primary/30">
+                    <div class="w-10 h-10 sm:w-14 sm:h-14 mb-3 sm:mb-4 flex items-center justify-center bg-dark-700 rounded-lg sm:rounded-xl group-hover:bg-accent-primary/10 transition-colors">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-green-600" viewBox="0 0 24 24" fill="currentColor"><path d="M17.193 9.555c-1.264-5.58-4.252-7.414-4.573-8.115-.28-.394-.53-.954-.735-1.44-.036.495-.055.685-.523 1.184-.723.566-4.438 3.682-4.74 10.02-.282 5.912 4.27 9.435 4.888 9.884l.07.05A73.49 73.49 0 0111.91 24h.481c.114-1.032.284-2.056.51-3.07.417-.296.604-.463.85-.693a11.342 11.342 0 003.639-8.464c.01-.814-.103-1.662-.197-2.218zm-5.336 8.195s0-8.291.275-8.29c.213 0 .49 10.695.49 10.695-.381-.045-.765-1.76-.765-2.405z"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-sm sm:text-base mb-0.5 sm:mb-1">MongoDB</h3>
+                    <p class="text-gray-500 text-xs sm:text-sm">Database</p>
+                </div>
+                <div class="tech-card group p-4 sm:p-6 bg-dark-800/50 backdrop-blur border border-white/5 rounded-xl sm:rounded-2xl transition-all duration-300 hover:border-accent-primary/30">
+                    <div class="w-10 h-10 sm:w-14 sm:h-14 mb-3 sm:mb-4 flex items-center justify-center bg-dark-700 rounded-lg sm:rounded-xl group-hover:bg-accent-primary/10 transition-colors">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400" viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179z"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-sm sm:text-base mb-0.5 sm:mb-1">JavaScript</h3>
+                    <p class="text-gray-500 text-xs sm:text-sm">Language</p>
+                </div>
+                <div class="tech-card group p-4 sm:p-6 bg-dark-800/50 backdrop-blur border border-white/5 rounded-xl sm:rounded-2xl transition-all duration-300 hover:border-accent-primary/30">
+                    <div class="w-10 h-10 sm:w-14 sm:h-14 mb-3 sm:mb-4 flex items-center justify-center bg-dark-700 rounded-lg sm:rounded-xl group-hover:bg-accent-primary/10 transition-colors">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-orange-500" viewBox="0 0 24 24" fill="currentColor"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-sm sm:text-base mb-0.5 sm:mb-1">HTML5</h3>
+                    <p class="text-gray-500 text-xs sm:text-sm">Markup</p>
+                </div>
+                <div class="tech-card group p-4 sm:p-6 bg-dark-800/50 backdrop-blur border border-white/5 rounded-xl sm:rounded-2xl transition-all duration-300 hover:border-accent-primary/30">
+                    <div class="w-10 h-10 sm:w-14 sm:h-14 mb-3 sm:mb-4 flex items-center justify-center bg-dark-700 rounded-lg sm:rounded-xl group-hover:bg-accent-primary/10 transition-colors">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-blue-500" viewBox="0 0 24 24" fill="currentColor"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-sm sm:text-base mb-0.5 sm:mb-1">CSS3</h3>
+                    <p class="text-gray-500 text-xs sm:text-sm">Styling</p>
+                </div>
+                <div class="tech-card group p-4 sm:p-6 bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 backdrop-blur border border-accent-primary/30 rounded-xl sm:rounded-2xl transition-all duration-300">
+                    <div class="w-10 h-10 sm:w-14 sm:h-14 mb-3 sm:mb-4 flex items-center justify-center bg-accent-primary/20 rounded-lg sm:rounded-xl">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                    </div>
+                    <h3 class="font-semibold text-sm sm:text-base mb-0.5 sm:mb-1">Full Stack</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm">End-to-End</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="gradient-border">
+                <div class="gradient-border-inner p-6 sm:p-8 lg:p-12">
+                    <div class="flex flex-col lg:flex-row gap-6 sm:gap-8 items-center">
+                        <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-accent-primary to-accent-tertiary flex items-center justify-center text-3xl sm:text-4xl font-bold shrink-0">DM</div>
+                        <div class="space-y-3 sm:space-y-4 text-center lg:text-left">
+                            <h2 class="text-2xl sm:text-3xl font-bold">About Me</h2>
+                            <p class="text-gray-400 text-sm sm:text-base leading-relaxed">I'm a passionate Full Stack Developer with expertise in building modern web applications. I love turning complex problems into simple, beautiful, and intuitive solutions. From responsive frontends with React and Angular to robust backends with Node.js and MongoDB, I deliver complete solutions that make a difference.</p>
+                            <div class="flex gap-2 sm:gap-4 justify-center lg:justify-start flex-wrap">
+                                <span class="px-3 sm:px-4 py-1.5 sm:py-2 bg-dark-700 rounded-lg text-xs sm:text-sm text-gray-300">Problem Solver</span>
+                                <span class="px-3 sm:px-4 py-1.5 sm:py-2 bg-dark-700 rounded-lg text-xs sm:text-sm text-gray-300">Team Player</span>
+                                <span class="px-3 sm:px-4 py-1.5 sm:py-2 bg-dark-700 rounded-lg text-xs sm:text-sm text-gray-300">Quick Learner</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 relative z-10">
+        <div class="max-w-2xl mx-auto text-center">
+            <p class="text-accent-tertiary font-mono text-xs sm:text-sm mb-3 sm:mb-4">Get In Touch</p>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 gradient-text">Let's Work Together</h2>
+            <p class="text-gray-400 text-base sm:text-lg mb-8 sm:mb-10 px-4">Interested in collaborating or have a project in mind? I'd love to hear from you. Let's build something amazing together!</p>
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-10 sm:mb-12 px-4">
+                <a href="mailto:deepak@deepakmalviya.com" class="group px-6 sm:px-8 py-3 sm:py-4 bg-accent-primary rounded-xl font-medium hover:bg-accent-primary/90 transition-all flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    Send Email
+                </a>
+                <a href="https://github.com/deepakmalviya008" target="_blank" rel="noopener noreferrer" class="px-6 sm:px-8 py-3 sm:py-4 border border-white/10 rounded-xl font-medium hover:bg-white/5 transition-all flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    View GitHub
+                </a>
+            </div>
+            <div class="flex justify-center gap-4 sm:gap-6">
+                <a href="https://linkedin.com/in/deepak-malviya" target="_blank" rel="noopener noreferrer" class="w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-xl bg-dark-800 hover:bg-dark-700 transition-colors text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a href="https://twitter.com/deepakdkmalviya" target="_blank" rel="noopener noreferrer" class="w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-xl bg-dark-800 hover:bg-dark-700 transition-colors text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="https://instagram.com/deepak.traveller" target="_blank" rel="noopener noreferrer" class="w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-xl bg-dark-800 hover:bg-dark-700 transition-colors text-gray-400 hover:text-white">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-6 sm:py-8 px-4 sm:px-6 border-t border-white/5 relative z-10">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+            <p class="text-gray-500 text-xs sm:text-sm text-center">© 2026 Deepak Malviya. All rights reserved.</p>
+            <p class="text-gray-500 text-xs sm:text-sm font-mono">&lt;/&gt; with ❤️</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { target.scrollIntoView({ behavior: 'smooth' }); mobileMenu.classList.remove('active'); menuOverlay.classList.add('hidden'); }
+            });
+        });
+        const menuBtn = document.getElementById('menuBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        menuBtn.addEventListener('click', () => { mobileMenu.classList.add('active'); menuOverlay.classList.remove('hidden'); });
+        closeMenuBtn.addEventListener('click', () => { mobileMenu.classList.remove('active'); menuOverlay.classList.add('hidden'); });
+        menuOverlay.addEventListener('click', () => { mobileMenu.classList.remove('active'); menuOverlay.classList.add('hidden'); });
+        document.querySelectorAll('.mobile-link').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.remove('active'); menuOverlay.classList.add('hidden'); }); });
+    </script>
+</body>
+</html>
